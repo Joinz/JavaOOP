@@ -8,7 +8,7 @@ public class Main {
 		Cat cat2 = new Cat("Filya", 5, "red", 70, 10, 50);
 		
 		System.out.println(cat1);
-		System.out.println(cat2);
+		System.out.println(cat2); 
 		
 		if (cat2.getPunchStrange() > cat1.getPunchStrange()) {
 			cat1.setSpeed(100);
