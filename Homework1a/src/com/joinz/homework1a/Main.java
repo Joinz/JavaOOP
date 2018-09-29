@@ -16,7 +16,7 @@ public class Main {
 			cat1.meowCrazy();
 			cat2.meowHappy();
 		} else {
-			cat2.setSpeed(100);
+			cat2.setSpeed(100); 
 			cat2.setHealth(cat2.getHealth()/2);
 			cat2.meowCrazy();
 			cat1.meowHappy();
