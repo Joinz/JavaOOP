@@ -32,7 +32,7 @@ public class Board {
 				string += board[i].toString();
 				area += board[i].getArea();
 			} else {
-				string += "clear, ";
+				string += "clear";
 			}
 			string += System.lineSeparator();
 		}

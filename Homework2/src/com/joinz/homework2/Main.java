@@ -23,6 +23,8 @@ public class Main {
 		board.addShape(1, sp1);
 		board.addShape(2, sp2);
 		System.out.println(board.allBoard());
+		
+		
 	}
 
 }
