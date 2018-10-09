@@ -18,6 +18,11 @@ public class Main {
 		System.out.println(sp2.toString());
 		System.out.println("Perimetr of circle equals " + sp2.getPerimetr());
 		System.out.println("Area of circle equals " + sp2.getArea());
+		
+		Board board = new Board();
+		board.addShape(1, sp1);
+		board.addShape(2, sp2);
+		System.out.println(board.allBoard());
 	}
 
 }
