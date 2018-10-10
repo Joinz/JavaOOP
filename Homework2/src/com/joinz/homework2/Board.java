@@ -15,11 +15,19 @@ public class Board {
 	}
 	
 	public void addShape(int i, Shape shape) {
-		board[i] = shape;
+		if (i < 4) {
+			board[i] = shape;
+		} else {
+			System.out.println("Invalid part given");
+		}
 	}
 	
 	public void delShape(int i) {
-		board[i] = null;
+		if (i < 4) {
+			board[i] = null;
+		} else {
+			System.out.println("Invalid part given");
+		}
 	}
 	
 	public String allBoard() {
