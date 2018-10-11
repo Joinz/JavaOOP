@@ -5,26 +5,23 @@ import java.util.Arrays;
 public class Board {
 	private Shape board[] = new Shape[4];
 
-	public Board(Shape[] board) {
-		super();
-		this.board = board;
-	}
-
 	public Board() {
 		super();
 	}
 	
 	public void addShape(int i, Shape shape) {
-		if (i < 4) {
+		if (i < board.length && i >= 0) {
 			board[i] = shape;
+			System.out.println(board[i] + " added");
 		} else {
 			System.out.println("Invalid part given");
 		}
 	}
 	
 	public void delShape(int i) {
-		if (i < 4) {
+		if (i < board.length) {
 			board[i] = null;
+			System.out.println("Shape deleted");
 		} else {
 			System.out.println("Invalid part given");
 		}
@@ -40,7 +37,7 @@ public class Board {
 				string += board[i].toString();
 				area += board[i].getArea();
 			} else {
-				string += "clear";
+				string += "empty";
 			}
 			string += System.lineSeparator();
 		}
