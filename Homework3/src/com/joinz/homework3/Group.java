@@ -1,5 +1,8 @@
 package com.joinz.homework3;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Group {
 	private Student[] group = new Student[10];
@@ -36,6 +39,21 @@ public class Group {
 		}
 		throw new HasNotStudentException();
 	}
+	
+	public ArrayList<String> groupSorted(Group group) {
+		String [] surnamesList = new String [10];
+		for (int i = 0; i < this.group.length; i++) {
+			if (this.group[i] != null) {
+				surnamesList[i] = this.group[i].getSurname();
+			} else {
+				surnamesList[i] = "";
+			}
+		}
+		Arrays.sort(surnamesList);
+		ArrayList<String> list = new ArrayList<String>(Arrays.asList(surnamesList));
+		list.removeAll(Arrays.asList("", null));
+		return list;
+	}
 
 	@Override
 	public String toString() {
@@ -50,7 +68,7 @@ public class Group {
 			}
 		}
 		return "Group [group]:" + s;
-	}	
+	}
 }
 //1) Создайте класс, описывающий человека (создайте метод,
 //выводящий информацию о человеке).
