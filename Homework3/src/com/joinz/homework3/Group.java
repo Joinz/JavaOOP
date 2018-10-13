@@ -1,6 +1,5 @@
 package com.joinz.homework3;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -35,7 +34,7 @@ public class Group {
 		for (int i = 0; i < this.group.length; i++) {
 			if (this.group[i] != null && surname == this.group[i].getSurname()) {
 				return this.group[i];
-			} 
+			}
 		}
 		throw new HasNotStudentException();
 	}

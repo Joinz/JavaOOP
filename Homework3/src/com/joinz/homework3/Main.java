@@ -1,6 +1,5 @@
 package com.joinz.homework3;
 
-import java.util.Arrays;
 
 public class Main {
 
