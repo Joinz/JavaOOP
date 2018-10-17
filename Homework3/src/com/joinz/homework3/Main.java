@@ -22,8 +22,8 @@ public class Main {
 		}
 		System.out.println(group.toString());
 		try {
-			System.out.println(group.findStudentBySurname(group, "pupkin"));
-			System.out.println(group.findStudentBySurname(group, "pup"));
+			System.out.println(group.findStudentBySurname("pupkin"));
+			System.out.println(group.findStudentBySurname("pup"));
 		} catch (HasNotStudentException e) {
 			System.out.println(e.getMessage());
 		}

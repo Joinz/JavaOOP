@@ -30,7 +30,7 @@ public class Group {
 		}
 	}
 	
-	public Student findStudentBySurname(Group group, String surname) throws HasNotStudentException {
+	public Student findStudentBySurname(String surname) throws HasNotStudentException {
 		for (int i = 0; i < this.group.length; i++) {
 			if (this.group[i] != null && surname == this.group[i].getSurname()) {
 				return this.group[i];
