@@ -16,6 +16,12 @@ public class Main {
 		Group g5kib8 = new Group();
 		
 		try {
+			System.out.println(trolol.addStudent(student1));
+			System.out.println(trolol.addStudent(student2));
+			System.out.println(trolol.addStudent(student3));
+			System.out.println(trolol.addStudent(student4));
+			System.out.println(trolol.addStudent(student5));
+
 			System.out.println(g5kib8.addStudent(student1));
 			System.out.println(g5kib8.addStudent(student2));
 			System.out.println(g5kib8.addStudent(student3));
@@ -42,7 +48,6 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
-		System.out.println(g5kib8.toString());
 		try {
 			System.out.println(g5kib8.findStudentBySurname("pupkin"));
 			System.out.println(g5kib8.findStudentBySurname("pup"));
@@ -58,6 +63,8 @@ public class Main {
 		}
 		g5kib8.sortGroup();
 		System.out.println(g5kib8.toString());
+		trolol.sortGroup();
+		System.out.println(trolol.toString());
 	}
 
 }

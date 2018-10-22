@@ -63,22 +63,22 @@ public class Group {
 		Student buf;
 		while(!isSorted) {
 			isSorted = true;
-			for (int i = 0; i < this.groupArray.length-1; i++) {
-				if (this.groupArray[i] == null) {
+			for (int i = 0; i < groupArray.length-1; i++) {
+				if (groupArray[i] == null) {
 					continue;
-				} else if (this.groupArray[i+1] == null) {
+				} else if (groupArray[i+1] == null) {
 					isSorted = false;
-					buf = this.groupArray[i];
-					this.groupArray[i] = null;
-					this.groupArray[i+1] = buf;
+					buf = groupArray[i];
+					groupArray[i] = null;
+					groupArray[i+1] = buf;
 				} else {
-					String s1 = this.groupArray[i].getSurname();
-					String s2 = this.groupArray[i+1].getSurname();
+					String s1 = groupArray[i].getSurname();
+					String s2 = groupArray[i+1].getSurname();
 					if (s1.compareToIgnoreCase(s2) > 0) {
 						isSorted = false;
-						buf = this.groupArray[i];
-						this.groupArray[i] = this.groupArray[i+1];
-						this.groupArray[i+1] = buf;
+						buf = groupArray[i];
+						groupArray[i] = groupArray[i+1];
+						groupArray[i+1] = buf;
 					}
 				}
 				
