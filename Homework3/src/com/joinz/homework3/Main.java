@@ -6,10 +6,10 @@ import com.joinz.homework3.Human.Sex;
 public class Main {
 
 	public static void main(String[] args) {
-		Student student1 = new Student("Vasya", 20, Sex.Male, "Pupkin");
+		Student student1 = new Student("Vasya", 18, Sex.Male, "Pupkin");
 		Student student2 = new Student("Petya", 21, Sex.Male, "Filimonov");
 		Student student3 = new Student("Natasha", 19, Sex.Female, "Popova");
-		Student student4 = new Student("Grisha", 19, Sex.Male, "Prohorov");
+		Student student4 = new Student("Grisha", 17, Sex.Male, "Prohorov");
 		Student student5 = new Student("Alena", 21, Sex.Female, "Sobchak");
 		Student student6 = new Student("Natasha", 20, Sex.Female, "Volochkova");
 		Student student7 = new Student("Mila", 20, Sex.Female, "Yovovich");
@@ -77,6 +77,8 @@ public class Main {
 		
 		trolol.sortGroup(SortBy.Age);
 		System.out.println(trolol.toString());
+		
+		System.out.println(trolol.militaryArray().toString());
 	}
 
 }

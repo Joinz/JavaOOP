@@ -2,7 +2,9 @@ package com.joinz.homework3;
 
 import java.util.Scanner;
 
-public class Group {
+import com.joinz.homework3.Human.Sex;
+
+public class Group implements MilitaryComissar {
 	
 	private String name;
 	private Student[] groupArray = new Student[10];
@@ -101,6 +103,19 @@ public class Group {
 			}
 		}
 		System.out.println("Group " + this.getName() + " has sorted by " + param);
+	}
+
+	@Override
+	public Student[] militaryArray() {
+		Student[] militaryArray = new Student[groupArray.length];
+		for (int i = 0; i < groupArray.length; i++) {
+			int j = 0;
+			if (groupArray[i] != null && groupArray[i].getSex() == Sex.Male && groupArray[i].getAge() >= 18) {
+				militaryArray[j] = groupArray[i];
+				j++;
+			}
+		}
+		return militaryArray;
 	}
 
 	@Override
