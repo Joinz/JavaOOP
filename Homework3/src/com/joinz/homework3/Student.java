@@ -20,6 +20,7 @@ public class Student extends Human {
 		this.surname = surname;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Student [name=" + super.getName() + ", age=" + super.getAge() + ", sex=" + super.isSex() + ", surname=" + this.surname + "]";

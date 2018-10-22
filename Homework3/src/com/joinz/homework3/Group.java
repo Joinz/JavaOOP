@@ -1,72 +1,91 @@
 package com.joinz.homework3;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Group {
-	private Student[] group = new Student[10];
 	
-	public String addStudent(Student student, int i) throws GroupSizeException {
-		if (i > 0 && i <= 10) {
-			if (group[i-1] == null) {
-				String s = student + " successfully added to " + i + " place";
-				group[i-1] = student;
+	private String name;
+	private Student[] groupArray = new Student[10];
+	
+	public Group(String name) {
+		super();
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String addStudent(Student student) throws GroupSizeException {
+		String s;
+		for (int i = 0; i < groupArray.length; i++) {
+			if (groupArray[i] == null) {
+				s = student + " successfully added to " + this.getName();
+				groupArray[i] = student;
 				return s;
-			} else {
-				return "This place already taken";
 			}
-		} else {
-			throw new GroupSizeException();
 		}
+		throw new GroupSizeException();
 	}
 	
-	public String delStudent(int i) {
-		if (group[i-1] != null) {
-			String s = group[i] + " successfully deleted";
-			group[i-1] = null;
-			return s;
-		} else {
-			return "Student is not exists";
+	public String delStudent(String surname) {
+		String s;
+		for (int i = 0; i < groupArray.length; i++) {
+			if (groupArray[i] != null && groupArray[i].getSurname().equalsIgnoreCase(surname)) {
+				s = groupArray[i] + " successfully deleted";
+				groupArray[i] = null;
+				return s;
+			}
 		}
+		return "Student is not exist";
 	}
 	
 	public Student findStudentBySurname(String surname) throws HasNotStudentException {
-		for (int i = 0; i < this.group.length; i++) {
-			if (this.group[i] != null && surname == this.group[i].getSurname()) {
-				return this.group[i];
+		for (int i = 0; i < groupArray.length; i++) {
+			if (groupArray[i] != null && groupArray[i].getSurname().equalsIgnoreCase(surname)) {
+				return groupArray[i];
 			}
 		}
 		throw new HasNotStudentException();
 	}
 	
-	public ArrayList<String> groupSorted(Group group) {
-		String [] surnamesList = new String [10];
-		for (int i = 0; i < this.group.length; i++) {
-			if (this.group[i] != null) {
-				surnamesList[i] = this.group[i].getSurname();
-			} else {
-				surnamesList[i] = "";
+	public void sortGroup() {
+		boolean isSorted = false;
+		Student buf;
+		while(!isSorted) {
+			isSorted = true;
+			for (int i = 0; i < this.groupArray.length-1; i++) {
+				if (this.groupArray[i] == null) {
+					continue;
+				} else if (this.groupArray[i+1] == null) {
+					isSorted = false;
+					buf = this.groupArray[i];
+					this.groupArray[i] = null;
+					this.groupArray[i+1] = buf;
+				} else {
+					String s1 = this.groupArray[i].getSurname();
+					String s2 = this.groupArray[i+1].getSurname();
+					if (s1.compareToIgnoreCase(s2) > 0) {
+						isSorted = false;
+						buf = this.groupArray[i];
+						this.groupArray[i] = this.groupArray[i+1];
+						this.groupArray[i+1] = buf;
+					}
+				}
+				
 			}
 		}
-		Arrays.sort(surnamesList);
-		ArrayList<String> list = new ArrayList<String>(Arrays.asList(surnamesList));
-		list.removeAll(Arrays.asList("", null));
-		return list;
 	}
 
 	@Override
 	public String toString() {
 		String s = "";
-		for (int i = 0; i < group.length; i++) {
-			s += System.lineSeparator();
-			s+= i+1 + ") ";
-			if (group[i] != null) {
-				s += group[i].toString() + ";";
-			} else {
-				s += "Empty place;";
+		for (int i = 0; i < groupArray.length; i++) {
+			if (groupArray[i] != null) {
+				s += System.lineSeparator();
+				s += groupArray[i].toString() + ";";
 			}
 		}
-		return "Group [group]:" + s;
+		return "Group " + this.getName() + ":" + s;
 	}
 }
 //1) Создайте класс, описывающий человека (создайте метод,
