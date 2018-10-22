@@ -4,7 +4,6 @@ package com.joinz.homework3;
 public class Main {
 
 	public static void main(String[] args) {
-		
 		Student student1 = new Student("Vasya", 20, true, "Pupkin");
 		Student student2 = new Student("Petya", 21, true, "Filimonov");
 		Student student3 = new Student("Natasha", 19, false, "Popova");
@@ -13,7 +12,8 @@ public class Main {
 		Student student6 = new Student("Natasha", 20, false, "Volochkova");
 		Student student7 = new Student("Mila", 20, false, "Yovovich");
 		
-		Group g5kib8 = new Group("5-KIB-8");
+		Group trolol = new Group("trolol");
+		Group g5kib8 = new Group();
 		
 		try {
 			System.out.println(g5kib8.addStudent(student1));

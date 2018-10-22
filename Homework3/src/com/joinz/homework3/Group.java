@@ -1,5 +1,6 @@
 package com.joinz.homework3;
 
+import java.util.Scanner;
 
 public class Group {
 	
@@ -9,6 +10,15 @@ public class Group {
 	public Group(String name) {
 		super();
 		this.name = name;
+	}
+	
+	public Group() {
+		super();
+		System.out.println("Input group name:");
+		Scanner sc = new Scanner(System.in);
+		String name = sc.nextLine();
+		this.name = name;
+		sc.close();
 	}
 
 	public String getName() {
