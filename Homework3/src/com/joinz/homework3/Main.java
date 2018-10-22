@@ -1,17 +1,18 @@
 package com.joinz.homework3;
 
 import com.joinz.homework3.Group.SortBy;
+import com.joinz.homework3.Human.Sex;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Student student1 = new Student("Vasya", 20, true, "Pupkin");
-		Student student2 = new Student("Petya", 21, true, "Filimonov");
-		Student student3 = new Student("Natasha", 19, false, "Popova");
-		Student student4 = new Student("Grisha", 19, true, "Prohorov");
-		Student student5 = new Student("Alena", 21, false, "Sobchak");
-		Student student6 = new Student("Natasha", 20, false, "Volochkova");
-		Student student7 = new Student("Mila", 20, false, "Yovovich");
+		Student student1 = new Student("Vasya", 20, Sex.Male, "Pupkin");
+		Student student2 = new Student("Petya", 21, Sex.Male, "Filimonov");
+		Student student3 = new Student("Natasha", 19, Sex.Female, "Popova");
+		Student student4 = new Student("Grisha", 19, Sex.Male, "Prohorov");
+		Student student5 = new Student("Alena", 21, Sex.Female, "Sobchak");
+		Student student6 = new Student("Natasha", 20, Sex.Female, "Volochkova");
+		Student student7 = new Student("Mila", 20, Sex.Female, "Yovovich");
 		
 		Group trolol = new Group("trolol");
 		Group g5kib8 = new Group();
