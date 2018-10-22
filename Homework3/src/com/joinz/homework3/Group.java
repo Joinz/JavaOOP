@@ -7,7 +7,7 @@ public class Group {
 	private String name;
 	private Student[] groupArray = new Student[10];
 	public enum SortBy {
-		Name, Surname;
+		Name, Surname, Age;
 	}
 	
 	public Group(String name) {
@@ -81,16 +81,26 @@ public class Group {
 						s1 = groupArray[i].getName();
 						s2 = groupArray[i+1].getName();
 					}
-					if (s1.compareToIgnoreCase(s2) > 0) {
+					if ((param == SortBy.Name || param == SortBy.Surname) && s1.compareToIgnoreCase(s2) > 0) {
 						isSorted = false;
 						buf = groupArray[i];
 						groupArray[i] = groupArray[i+1];
 						groupArray[i+1] = buf;
 					}
+					if (param == SortBy.Age) {
+						int a1 = groupArray[i].getAge();
+						int a2 = groupArray[i+1].getAge();
+						if (a1 - a2 > 0) {
+							isSorted = false;
+							buf = groupArray[i];
+							groupArray[i] = groupArray[i+1];
+							groupArray[i+1] = buf;
+						}
+					}
 				}
-				
 			}
 		}
+		System.out.println("Group " + this.getName() + " has sorted by " + param);
 	}
 
 	@Override

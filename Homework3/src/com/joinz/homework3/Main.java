@@ -64,9 +64,17 @@ public class Main {
 		}
 		g5kib8.sortGroup(SortBy.Surname);
 		System.out.println(g5kib8.toString());
+		System.out.println();
+		
 		trolol.sortGroup(SortBy.Surname);
 		System.out.println(trolol.toString());
+		System.out.println();
+		
 		trolol.sortGroup(SortBy.Name);
+		System.out.println(trolol.toString());
+		System.out.println();
+		
+		trolol.sortGroup(SortBy.Age);
 		System.out.println(trolol.toString());
 	}
 
