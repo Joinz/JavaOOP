@@ -6,6 +6,9 @@ public class Group {
 	
 	private String name;
 	private Student[] groupArray = new Student[10];
+	public enum SortBy {
+		Name, Surname;
+	}
 	
 	public Group(String name) {
 		super();
@@ -58,7 +61,7 @@ public class Group {
 		throw new HasNotStudentException();
 	}
 	
-	public void sortGroup() {
+	public void sortGroup(SortBy param) {
 		boolean isSorted = false;
 		Student buf;
 		while(!isSorted) {
@@ -74,6 +77,10 @@ public class Group {
 				} else {
 					String s1 = groupArray[i].getSurname();
 					String s2 = groupArray[i+1].getSurname();
+					if (param == SortBy.Name) {
+						s1 = groupArray[i].getName();
+						s2 = groupArray[i+1].getName();
+					}
 					if (s1.compareToIgnoreCase(s2) > 0) {
 						isSorted = false;
 						buf = groupArray[i];

@@ -1,5 +1,6 @@
 package com.joinz.homework3;
 
+import com.joinz.homework3.Group.SortBy;
 
 public class Main {
 
@@ -61,9 +62,11 @@ public class Main {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		g5kib8.sortGroup();
+		g5kib8.sortGroup(SortBy.Surname);
 		System.out.println(g5kib8.toString());
-		trolol.sortGroup();
+		trolol.sortGroup(SortBy.Surname);
+		System.out.println(trolol.toString());
+		trolol.sortGroup(SortBy.Name);
 		System.out.println(trolol.toString());
 	}
 
