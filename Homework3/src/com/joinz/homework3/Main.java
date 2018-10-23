@@ -81,7 +81,7 @@ public class Main {
 
 		Student[] myaso = trolol.militaryArray();
 		for (Student student : myaso) {
-			System.out.println("Goden! Na formu, idi pereodevaisya " + student + "!!!");
+			System.out.println("Goden! Na formu, idi pereodevaisya, " + student + "!!!");
 		}
 	}
 }

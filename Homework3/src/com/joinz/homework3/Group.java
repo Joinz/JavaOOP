@@ -1,7 +1,6 @@
 package com.joinz.homework3;
 
 import java.util.Scanner;
-
 import com.joinz.homework3.Human.Sex;
 
 public class Group implements MilitaryComissar {
@@ -129,14 +128,15 @@ public class Group implements MilitaryComissar {
 
 	@Override
 	public String toString() {
-		String s = "";
+		StringBuilder sb = new StringBuilder();
+		sb.append("Group " + this.getName());
 		for (int i = 0; i < groupArray.length; i++) {
 			if (groupArray[i] != null) {
-				s += System.lineSeparator();
-				s += groupArray[i].toString() + ";";
+				sb.append(System.lineSeparator());
+				sb.append(groupArray[i].toString() + ";");
 			}
 		}
-		return "Group " + this.getName() + ":" + s;
+		return sb.toString();
 	}
 }
 //1) Создайте класс, описывающий человека (создайте метод,
