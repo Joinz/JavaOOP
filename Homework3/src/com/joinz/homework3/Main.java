@@ -83,5 +83,6 @@ public class Main {
 		for (Student student : myaso) {
 			System.out.println("Goden! Na formu, idi pereodevaisya, " + student + "!!!");
 		}
+		
 	}
 }
