@@ -33,9 +33,13 @@ public class Group implements MilitaryComissar {
 	public String addStudent(Student student) throws GroupSizeException {
 		String s;
 		for (int i = 0; i < groupArray.length; i++) {
+			if (student == null) {
+				throw new IllegalArgumentException("Null student");
+			}
 			if (groupArray[i] == null) {
 				s = student + " successfully added to " + this.getName();
 				groupArray[i] = student;
+				student.setGroup(this.getName());
 				return s;
 			}
 		}
@@ -107,12 +111,17 @@ public class Group implements MilitaryComissar {
 
 	@Override
 	public Student[] militaryArray() {
-		Student[] militaryArray = new Student[groupArray.length];
-		for (int i = 0; i < groupArray.length; i++) {
-			int j = 0;
-			if (groupArray[i] != null && groupArray[i].getSex() == Sex.Male && groupArray[i].getAge() >= 18) {
-				militaryArray[j] = groupArray[i];
-				j++;
+		int n = 0;
+		for (Student student : groupArray) {
+			if (student != null && student.getSex() == Sex.Male && student.getAge() >= 18) {
+				n++;
+			}
+		}
+		Student[] militaryArray = new Student[n];
+		int i = 0;
+		for (Student student : groupArray) {
+			if (student != null && student.getSex() == Sex.Male && student.getAge() >= 18) {
+				militaryArray[i++] = student;
 			}
 		}
 		return militaryArray;

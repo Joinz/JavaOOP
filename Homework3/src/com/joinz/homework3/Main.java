@@ -77,8 +77,11 @@ public class Main {
 		
 		trolol.sortGroup(SortBy.Age);
 		System.out.println(trolol.toString());
-		
-		System.out.println(trolol.militaryArray().toString());
-	}
+		System.out.println();
 
+		Student[] myaso = trolol.militaryArray();
+		for (Student student : myaso) {
+			System.out.println("Goden! Na formu, idi pereodevaisya " + student + "!!!");
+		}
+	}
 }

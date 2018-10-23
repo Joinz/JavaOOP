@@ -2,7 +2,8 @@ package com.joinz.homework3;
 
 public class Student extends Human {
 	private String surname;
-
+	private String group;
+	
 	public Student(String name, int age, Sex sex, String surname) {
 		super(name, age, sex);
 		this.surname = surname;
@@ -20,6 +21,13 @@ public class Student extends Human {
 		this.surname = surname;
 	}
 
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
 
 	@Override
 	public String toString() {
