@@ -1,5 +1,8 @@
 package com.joinz.homework3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface MilitaryComissar {
-	public Student[] militaryArray();
+	public List<Student> militaryArray();
 }

@@ -2,14 +2,14 @@ package com.joinz.homework3;
 
 public class Human {
 	private String name;
-	private int age;
+	private Integer age;
 	private Sex sex;
 	
 	public enum Sex {
 		Male, Female;
 	}
 	
-	public Human(String name, int age, Sex sex) {
+	public Human(String name, Integer age, Sex sex) {
 		super();
 		this.name = name;
 		this.age = age;
@@ -28,11 +28,11 @@ public class Human {
 		this.name = name;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

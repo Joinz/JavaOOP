@@ -1,126 +1,134 @@
 package com.joinz.homework3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import com.joinz.homework3.Human.Sex;
 
 public class Group implements MilitaryComissar {
 	
-	private String name;
-	private Student[] groupArray = new Student[10];
+	private String groupName;
+	private List<Student> groupArray; 
 	public enum SortBy {
 		Name, Surname, Age;
 	}
 	
 	public Group(String name) {
 		super();
-		this.name = name;
+		groupArray = new ArrayList<>();
+		this.groupName = name;
 	}
 	
 	public Group() {
 		super();
+		groupArray = new ArrayList<>();
 		System.out.println("Input group name:");
 		Scanner sc = new Scanner(System.in);
-		String name = sc.nextLine();
-		this.name = name;
+		this.groupName = sc.nextLine();
 		sc.close();
 	}
 
 	public String getName() {
-		return name;
+		return groupName;
 	}
 
-	public String addStudent(Student student) throws GroupSizeException {
-		String s;
-		for (int i = 0; i < groupArray.length; i++) {
-			if (student == null) {
-				throw new IllegalArgumentException("Null student");
-			}
-			if (groupArray[i] == null) {
-				s = student + " successfully added to " + this.getName();
-				groupArray[i] = student;
-				student.setGroup(this.getName());
-				return s;
-			}
+	public void setName(String name) {
+		this.groupName = name;
+	}
+
+	public void addStudent(Student student) throws GroupSizeException, AlreadyExistException {
+		if (student == null) {
+			throw new IllegalArgumentException("Null student");
+		}
+		if (groupArray.contains(student)) {
+			throw new AlreadyExistException();
+		}
+		if (groupArray.size() < 10) {
+			groupArray.add(student);
+			student.setGroup(this.getName());
+			return;
 		}
 		throw new GroupSizeException();
 	}
 	
-	public String delStudent(String surname) {
-		String s;
-		for (int i = 0; i < groupArray.length; i++) {
-			if (groupArray[i] != null && groupArray[i].getSurname().equalsIgnoreCase(surname)) {
-				s = groupArray[i] + " successfully deleted";
-				groupArray[i] = null;
-				return s;
+	public boolean delStudent(String surname) {
+		if (surname == null) {
+			throw new IllegalArgumentException();
+		}
+		for (int i = 0; i < groupArray.size(); i++) {
+			if (groupArray.get(i) != null && groupArray.get(i).getSurname().equalsIgnoreCase(surname)) {
+				groupArray.set(i, null);
+				return true;
 			}
 		}
-		return "Student is not exist";
+		return false;
 	}
 	
-	public Student findStudentBySurname(String surname) throws HasNotStudentException {
-		for (int i = 0; i < groupArray.length; i++) {
-			if (groupArray[i] != null && groupArray[i].getSurname().equalsIgnoreCase(surname)) {
-				return groupArray[i];
+	public Student findStudentBySurname(String surname) {
+		for (Student student : groupArray) {
+			if (student != null && student.getSurname().equalsIgnoreCase(surname)) {
+				return student;
 			}
 		}
-		throw new HasNotStudentException();
+		return null;
 	}
 	
-	public void sortGroup(SortBy param) {
-		boolean isSorted = false;
-		Student buf;
-		while(!isSorted) {
-			isSorted = true;
-			for (int i = 0; i < groupArray.length-1; i++) {
-				if (groupArray[i] == null) {
-					continue;
-				} else if (groupArray[i+1] == null) {
-					isSorted = false;
-					buf = groupArray[i];
-					groupArray[i] = null;
-					groupArray[i+1] = buf;
-				} else {
-					String s1 = groupArray[i].getSurname();
-					String s2 = groupArray[i+1].getSurname();
-					if (param == SortBy.Name) {
-						s1 = groupArray[i].getName();
-						s2 = groupArray[i+1].getName();
-					}
-					if ((param == SortBy.Name || param == SortBy.Surname) && s1.compareToIgnoreCase(s2) > 0) {
-						isSorted = false;
-						buf = groupArray[i];
-						groupArray[i] = groupArray[i+1];
-						groupArray[i+1] = buf;
-					}
-					if (param == SortBy.Age) {
-						int a1 = groupArray[i].getAge();
-						int a2 = groupArray[i+1].getAge();
-						if (a1 - a2 > 0) {
-							isSorted = false;
-							buf = groupArray[i];
-							groupArray[i] = groupArray[i+1];
-							groupArray[i+1] = buf;
-						}
-					}
-				}
-			}
-		}
-		System.out.println("Group " + this.getName() + " has sorted by " + param);
+	public void sortGroup(SortBy sortBy) {
+		this.groupArray.sort(new StudentComparator(sortBy));
 	}
+	
+	public void sortGroup(SortBy sortBy, boolean sortAsc) {
+		this.groupArray.sort(new StudentComparator(sortBy, sortAsc));
+	}
+	
+//	public void sortGroup(SortBy param) {
+//		boolean isSorted = false;
+//		Student buf;
+//		while(!isSorted) {
+//			isSorted = true;
+//			for (int i = 0; i < groupArray.length-1; i++) {
+//				if (groupArray[i] == null) {
+//					continue;
+//				} else if (groupArray[i+1] == null) {
+//					isSorted = false;
+//					buf = groupArray[i];
+//					groupArray[i] = null;
+//					groupArray[i+1] = buf;
+//				} else {
+//					String s1 = groupArray[i].getSurname();
+//					String s2 = groupArray[i+1].getSurname();
+//					if (param == SortBy.Name) {
+//						s1 = groupArray[i].getName();
+//						s2 = groupArray[i+1].getName();
+//					}
+//					if ((param == SortBy.Name || param == SortBy.Surname) && s1.compareToIgnoreCase(s2) > 0) {
+//						isSorted = false;
+//						buf = groupArray[i];
+//						groupArray[i] = groupArray[i+1];
+//						groupArray[i+1] = buf;
+//					}
+//					if (param == SortBy.Age) {
+//						int a1 = groupArray[i].getAge();
+//						int a2 = groupArray[i+1].getAge();
+//						if (a1 - a2 > 0) {
+//							isSorted = false;
+//							buf = groupArray[i];
+//							groupArray[i] = groupArray[i+1];
+//							groupArray[i+1] = buf;
+//						}
+//					}
+//				}
+//			}
+//		}
+//		System.out.println("Group " + this.getName() + " has sorted by " + param);
+//	}
 
 	@Override
-	public Student[] militaryArray() {
-		int n = 0;
+	public List<Student> militaryArray() {
+		List<Student> militaryArray = new ArrayList<>();
 		for (Student student : groupArray) {
 			if (student != null && student.getSex() == Sex.Male && student.getAge() >= 18) {
-				n++;
-			}
-		}
-		Student[] militaryArray = new Student[n];
-		int i = 0;
-		for (Student student : groupArray) {
-			if (student != null && student.getSex() == Sex.Male && student.getAge() >= 18) {
-				militaryArray[i++] = student;
+				militaryArray.add(student);
 			}
 		}
 		return militaryArray;
@@ -128,16 +136,9 @@ public class Group implements MilitaryComissar {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Group " + this.getName());
-		for (int i = 0; i < groupArray.length; i++) {
-			if (groupArray[i] != null) {
-				sb.append(System.lineSeparator());
-				sb.append(groupArray[i].toString() + ";");
-			}
-		}
-		return sb.toString();
+		return "Group name = " + groupName + ", exists = " + groupArray;
 	}
+
 }
 //1) Создайте класс, описывающий человека (создайте метод,
 //выводящий информацию о человеке).
